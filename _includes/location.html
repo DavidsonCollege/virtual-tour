@@ -2,8 +2,26 @@
 <div id="{{ slug }}" aria-labelledby="{{ slug }}Title" aria-describedby="{{ slug }}Description">
     <div style="text-align: center" class="mt-3">
         <h3 id="{{ slug }}Title">{{ include.name }}</h3>
-        {% assign img_src = 'standard/Indexdata/' | append: include.image | append: '/html5/0.jpg' %}
-        <img class="img-fluid" src="{{ img_src | relative_url }}" alt="{{ location.name }}" aria-describedby="{{ slug }}Description">
+    </div>
+    <div class="row justify-content-center">
+        {% assign images = include.images | split: "," %}
+        {% if images.size == 1 %}
+            {% assign size_css = 'col-sm-12 col-md-8 col-xl-6' %}
+        {% elsif images.size == 2 %}
+            {% assign size_css = 'col-sm-12 col-md-6 col-xl-4' %}
+        {% elsif images.size == 3 %}
+            {% assign size_css = 'col-sm-12 col-md-4' %}
+        {% elsif images.size == 4 %}
+            {% assign size_css = 'col-sm-12 col-md-3' %}
+        {% else %}
+            {% assign size_css = 'col-sm-12 col-md-2' %}
+        {% endif %}
+        {% for image in images %}
+            <div class="{{ size_css }} p-0">
+                {% assign image_src = "standard/Indexdata/" | append: include.image_dir | append: '/html5/' | append: image | append: '.jpg' %}
+                <img class="img-fluid" src="{{ image_src | relative_url }}" alt="{{ location.name }} view {{image}}" aria-describedby="{{ slug }}Description">
+            </div>
+        {% endfor %}
     </div>
     <p id="{{ slug }}Description">
         {{ include.content | markdownify }}

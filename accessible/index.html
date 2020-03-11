@@ -53,7 +53,8 @@ groups:
                 <li role="menuitem">
                     {{ group }}
                     <ul role="menu">
-                        {% for location in site.locations %}
+                        {% assign locations = site.locations | sort: "order" %}
+                        {% for location in locations %}
                             {% if location.group == slug_name %}
                                 <li role="menuitem"><a href="#{{ location.name | slugify }}" aria-label="{{ location.name }}" alt="{{ location.name }}">{{ location.name }}</a></li>
                             {% endif %}
@@ -70,9 +71,12 @@ groups:
     <div class="row">
         <div class="co1" aria-labelledby="{{slug_name}}Title">
             <h2 id="{{slug_name}}Title" class="mt-5">{{ group }}</h2>
-            {% for location in site.locations | sort: "order" %}
+            {% assign locations = site.locations | sort: "order" %}
+            {% for location in locations %}
                 {% if location.group == slug_name %}
-                    {% include location.html name=location.name image=location.image content=location.content %}
+                    {% assign image_array = location.images | join: "," %}
+                    {% include location.html name=location.name images=image_array image_dir=location.image_dir content=location.content %}
+                    <!-- {% include location.html name=location.name image=location.image content=location.content %} -->
                 {% endif %}
             {% endfor %}
         </div>

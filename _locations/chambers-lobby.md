@@ -1,6 +1,11 @@
 ---
 name: Chamber's Lobby
 image: chambers_lobby_13
+image_dir: chambers_lobby_13
+images:
+ - 3
+ - 0
+ - 1
 group: academics
 order: 1
 ---
