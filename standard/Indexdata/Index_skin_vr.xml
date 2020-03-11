@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano version="1.19-pr16">
+
+    
+  <!-- Spot Style - Wildcat Point Spot Style -->
+
+
+  <style name="IconWildcatPointSpotStyle"
+         url="%FIRSTXML%/spots/davidson_tooltip_final_build_user_defaultpoint0.png"
+         visible="false"
+         edge="center"
+         onloaded="showPermanentTooltip(all);"
+         onhover="onhoverIconWildcatPointSpotStyle"
+         onout="onoutIconWildcatPointSpotStyle"
+
+         height="50"
+         width="50"
+         />
+  <action name="onhoverIconWildcatPointSpotStyle">
+    showtooltip('hotspot');
+  </action>
+  <action name="onoutIconWildcatPointSpotStyle">
+    hideTooltip();
+
+
+
+  </action>
+
+
+
+  <!-- unsupported kind of display : PointMap -->
+
+
+    
+  <!-- Spot Style - Virtual Tour Directions Hotspot -->
+
+
+  <style name="IconVirtualTourDirectionsHotspot"
+         url="%FIRSTXML%/spots/davidson_logo_final_build_user_defaultpoint2.png"
+         visible="false"
+         edge="center"
+         onloaded="showPermanentTooltip(all);"
+
+
+         height="60"
+         width="prop"
+         />
+
+
+
+  <!-- FLOORPLAN -->
+  <action name="hideFloorplan">set(tour_displayfloorplan, false);events.dispatch(onhidetourfloorplan);</action>
+  <action name="showFloorplan">set(tour_displayfloorplan, true); events.dispatch(onshowtourfloorplan);</action>
+
+
+</krpano>

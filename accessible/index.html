@@ -1,0 +1,82 @@
+---
+title: Accessible Tour
+layout: default
+groups:
+ - Welcome
+ - Academics
+ - The Arts
+ - Athletics
+ - Student Life
+---
+
+<a href="#jumpMenu"
+   aria-label="Skip to navigation menu"
+   alt="Skip to navigation menu"
+   tabindex="1"
+   style="position: absolute;width: 100vw; left: 0; top: -100px; background-color: #f79d00; padding: 10px; z-index: 100;">
+    Skip to Navigation
+</a>
+
+<div class="container" role="main" aria-labelledby="accessibilityTitle" aria-describedby="accessibilityInfo">
+    <div class="row">
+        <div class="col-12">
+            <h1 id="accessibilityTitle">Welcome to Davidson</h1>
+        </div>
+        <div class="col-6">
+            <p id="accessibilityInfo">
+                This is the accessibility version designed specifically for users needing extra accessibility features.
+                Feel free to check out the <a href="{{ 'standard' | relative_url }}">original experience here</a>.
+            </p>
+        </div>
+        <div class="col-6" role="navigation" aria-label="Action Section" aria-describedby="actionInfo">
+            <p id="actionInfo">Ready to take action?</p>
+            <ul role="menu">
+                <li role="menuitem">
+                    <a href="https://www.davidson.edu/admission-and-financial-aid/plan-visit" target="_blank" aria-label="Schedule a Visit" alt="Schedule a Visit">
+                        Schedule a Visit
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="https://admission.davidson.edu/register/requestinfo" target="_blank" aria-label="Request Admission Information" alt="Request Admission Information">
+                        Request Admission Information
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" id="jumpMenu" role="navigation" aria-label="page navigation" aria-describedby="jumpMenuInfo">
+            <p id="jumpMenuInfo">Below are quick links to jump to specific stops of the experience.</p>
+            <ul role="menu">
+                {% for group in page.groups %}
+                {% assign slug_name = group | slugify %}
+                <li role="menuitem">
+                    {{ group }}
+                    <ul role="menu">
+                        {% for location in site.locations %}
+                            {% if location.group == slug_name %}
+                                <li role="menuitem"><a href="#{{ location.name | slugify }}" aria-label="{{ location.name }}" alt="{{ location.name }}">{{ location.name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    {% for group in page.groups %}
+    {% assign slug_name = group | slugify %}
+    <div class="row">
+        <div class="co1" aria-labelledby="{{slug_name}}Title">
+            <h2 id="{{slug_name}}Title" class="mt-5">{{ group }}</h2>
+            {% for location in site.locations | sort: "order" %}
+                {% if location.group == slug_name %}
+                    {% include location.html name=location.name image=location.image content=location.content %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+</div>

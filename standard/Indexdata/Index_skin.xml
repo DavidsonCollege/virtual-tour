@@ -1,0 +1,1701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano version="1.19-pr16">
+
+    
+  <!-- Spot Style - Wildcat Point Spot Style -->
+
+
+  <style name="IconWildcatPointSpotStyle"
+         url="%FIRSTXML%/spots/davidson_tooltip_final_build_user_defaultpoint0.png"
+         visible="false"
+         edge="center"
+         zoom="true"
+
+         onloaded="if(scene[get(xml.scene)].planar,if(zoom,set(zoom, false);););showPermanentTooltip(touch);"
+         onhover="onhoverIconWildcatPointSpotStyle"
+         onout="onoutIconWildcatPointSpotStyle"
+
+         height="50"
+         width="50"
+         />
+  <action name="onhoverIconWildcatPointSpotStyle">
+    showtooltip('hotspot');
+  </action>
+  <action name="onoutIconWildcatPointSpotStyle">
+    hideTooltip();
+
+
+
+  </action>
+
+
+
+  <!-- unsupported kind of display : PointMap -->
+
+
+    
+  <!-- Spot Style - Virtual Tour Directions Hotspot -->
+
+
+  <style name="IconVirtualTourDirectionsHotspot"
+         url="%FIRSTXML%/spots/davidson_logo_final_build_user_defaultpoint2.png"
+         visible="false"
+         edge="center"
+         onloaded="showPermanentTooltip(all);"
+
+
+         height="60"
+         width="prop"
+         />
+
+
+
+<!-- ********** -->
+<!-- Schedule a Visit Button -->
+<!-- id : button -->
+<!-- ********** -->
+
+  <layer name="button"
+         keep="true"
+         url="%FIRSTXML%/graphics/button/schedule_a_visit_final_build.png"
+         align="topleft"
+         x="10"
+         y="10"
+         zorder="1"
+         visible="false"
+         onclick="buttonOnClick"
+         height="38"
+         width="106"
+         />
+
+
+
+  <action name="buttonOnClick">getmessage(urltoopen,buttononclick111840openurlwebsiteurl);openurl(get(urltoopen),_blank);
+
+
+  </action>
+
+  <events name="buttonevents"
+    onTourStart="showbutton();"
+    keep="true" />
+  <action name="hidebutton">set(layer[button].visible, false);</action>
+  <action name="showbutton">set(layer[button].visible, true);</action>
+
+
+<!-- ********** -->
+<!-- Schedule a Visit Website Box -->
+<!-- id : websiteViewer -->
+<!-- ********** -->
+
+<ptplugin name="websiteViewer" engine="kolorBox">
+	<settings>
+		<option name="position" value="topleft" type="string" />
+		<option name="margin_x" value="0" type="int" />
+		<option name="margin_y" value="0" type="int" />
+		<option name="external_padding" value="9" type="int" />
+		<option name="draggable_box" value="false" type="bool" />
+		<option name="container_auto_size" value="false" type="bool" />
+		<option name="container_width" value="100" type="int" />
+		<option name="container_width_unit" value="percent" type="string" />
+		<option name="container_height" value="100" type="int" />
+		<option name="container_height_unit" value="percent" type="string" />
+		<option name="container_color" value="ffffff" type="string" />
+		<option name="container_alpha" value="0.80000000000000004" type="float" />
+		<option name="container_topleft_border_radius" value="5" type="int" />
+		<option name="container_topright_border_radius" value="5" type="int" />
+		<option name="container_bottomleft_border_radius" value="5" type="int" />
+		<option name="container_bottomright_border_radius" value="5" type="int" />
+		<option name="container_border_width" value="0" type="int" />
+		<option name="container_border_color" value="ffffff" type="string" />
+		<option name="container_border_alpha" value="1" type="float" />
+		<option name="overlay_displayed" value="false" type="bool" />
+		<option name="overlay_color" value="000000" type="string" />
+		<option name="overlay_alpha" value="0.50000762951094835" type="float" />
+
+		<option name="title_displayed" value="true" type="bool" />
+		<option name="title_position" value="topleft" type="string" />
+		<option name="title_font" value="Palatino" type="string" />
+		<option name="title_size" value="14" type="int" />
+		<option name="title_weight" value="normal" type="string" />
+		<option name="title_style" value="normal" type="string" />
+		<option name="title_decoration" value="none" type="string" />
+		<option name="title_color" value="000000" type="string" />
+		<option name="caption_displayed" value="false" type="bool" />
+		<option name="iframe_scrolling" value="auto" type="string" />
+		<option name="iframe_default_width" value="1100" type="int" />
+		<option name="iframe_default_height" value="800" type="int" />
+		<option name="iframe_devices_width" value="1100" type="int" />
+		<option name="iframe_devices_height" value="800" type="int" />
+		<option name="force_ios_scrolling" value="true" type="bool" />
+		<option name="fullscreen_displayed" value="false" type="bool" />
+		<option name="fullscreen_position" value="topleft" type="string" />
+		<option name="fullscreen_text" value="websiteViewerfullscreen_text" type="string" />
+
+
+
+
+		<option name="close_displayed" value="false" type="bool" />
+		<option name="close_position" value="topright" type="string" />
+		<option name="close_text" value="websiteViewerclose_text" type="string" />
+
+		<option name="close_callback" value="invokeKrFunction('closeKolorBoxCallback_websiteViewer')" type="string" />
+		<option name="zorder" value="2" type="int" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+	<internaldata>
+		
+	</internaldata>
+</ptplugin>
+
+<action name="kolorBoxJsReady_websiteViewer">
+	set(ptplugin[websiteViewer].jsready, true);
+</action>
+
+<action name="openWebsite_websiteViewer">
+	ifnot(ptplugin[websiteViewer].isOpen,
+		set(ptplugin[websiteViewer].isOpen, true);
+		set(ptplugin[websiteViewer].doNotDeleteMe, false);
+		getmessage(websiteViewer_boxurl, %1);
+		txtadd(websiteViewer_boxurl, ?iframe=true);
+		pauseautorotation(forceplugin);
+
+		js(invokePluginFunction(websiteViewer, loadSingleArrayItem, get(websiteViewer_boxurl), %2));
+		events.dispatch(onremovedisplayedobject);
+	,
+		if('%1' != websiteViewer_boxurl,
+			closeKolorBox_websiteViewer();
+			delayedcall(0.3,openWebsite_websiteViewer(%1,%2););
+		);
+	);
+</action>
+
+<action name="toggleWebsite_websiteViewer">
+	js(invokePluginFunction(websiteViewer, toggleKolorBox, %1));
+</action>
+
+
+<action name="closeKolorBox_websiteViewer">
+	js(invokePluginFunction(websiteViewer, closeKolorBox));
+</action>
+
+<action name="closeKolorBoxCallback_websiteViewer">
+	resumeautorotation(forceplugin);
+
+	set(ptplugin[websiteViewer].isOpen, false);
+</action>
+
+<action name="changeLanguage_websiteViewer">
+	if(ptplugin[websiteViewer].jsready,
+		stopdelayedcall(delay_websiteViewer);
+		js(invokePluginFunction(websiteViewer, changeLanguage));
+	,
+		delayedcall(delay_websiteViewer, 0.1, changeLanguage_websiteViewer(););
+	);
+</action>
+
+<events name="kolorBoxEvents_websiteViewer" 
+	keep="true"
+	changetourlanguage="changeLanguage_websiteViewer();"
+	/>
+
+  <!-- ************* -->
+  <!-- Panorama Menu -->
+  <!-- ************* -->
+
+<ptplugin name="panoramaMenu" engine="kolorMenu">
+	<settings>
+		<option name="position" value="topright" type="string" />
+		<option name="orientation" value="vertical" type="string" />
+		<option name="sub_orientation" value="vertical" type="string" />
+		<option name="margin_x" value="5" type="int" />
+		<option name="margin_y" value="5" type="int" />
+		<option name="background_color" value="e6e6e6" type="string" />
+		<option name="background_alpha" value="1" type="float" />
+		<option name="item_spacer" value="5" type="int" />
+		<option name="border_radius" value="7" type="int" />
+		<option name="full_size" value="false" type="bool" />
+		<option name="use_out_effect" value="true" type="bool" />
+		<option name="item_out_border_radius" value="7" type="int" />
+		<option name="item_hover_border_radius" value="7" type="int" />
+		<option name="item_out_border_width" value="0" type="int" />
+		<option name="item_hover_border_width" value="0" type="int" />
+		<option name="item_out_bg_color" value="e6e6e6" type="string" />
+		<option name="item_out_bg_alpha" value="1" type="float" />
+		<option name="item_out_font_color" value="c70000" type="string" />
+		<option name="item_out_font_family" value="Copperplate" type="string" />
+		<option name="item_out_font_size" value="14" type="int" />
+		<option name="item_out_font_weight" value="bold" type="string" />
+		<option name="item_out_font_style" value="normal" type="string" />
+		<option name="item_out_font_decoration" value="underline" type="string" />
+		<option name="use_hover_effect" value="true" type="bool" />
+		<option name="item_hover_bg_color" value="ffffff" type="string" />
+		<option name="item_hover_bg_alpha" value="1" type="float" />
+		<option name="item_hover_font_color" value="c70000" type="string" />
+		<option name="item_hover_font_family" value="Copperplate" type="string" />
+		<option name="item_hover_font_size" value="14" type="int" />
+		<option name="item_hover_font_weight" value="bold" type="string" />
+		<option name="item_hover_font_style" value="normal" type="string" />
+		<option name="item_hover_font_decoration" value="underline" type="string" />
+		<option name="padding_main" value="10" type="int" />
+		<option name="padding_sub" value="10" type="int" />
+		<option name="force_font_menu" value="true" type="bool" />
+		<option name="force_font_menu_color" value="060000" type="string" />
+		<option name="force_font_menu_family" value="Copperplate" type="string" />
+		<option name="force_font_menu_size" value="18" type="int" />
+		<option name="force_font_menu_weight" value="normal" type="string" />
+		<option name="force_font_menu_style" value="normal" type="string" />
+		<option name="force_font_menu_decoration" value="underline" type="string" />
+		<option name="text_align" value="right" type="string" />
+		<option name="item_thumb_max_width" value="200" type="int" />
+		<option name="item_thumb_max_height" value="100" type="int" />
+		
+		<option name="zorder" value="3" type="int" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+	<internaldata>
+				<group name="group_1"
+						titleID="panogroup47_title"
+						thumbnail=""
+						subMenu="true"
+						cssClass="panogroup47"> 
+
+				
+				
+						<item name="group_1_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano14')"
+								titleID="pano14_title"
+								thumbnail="Indexdata/chambers_14/thumbnail.jpg"
+							cssClass="pano14">
+						
+						
+						</item>
+						<item name="group_1_item_2"
+							action="invokeKrFunction('mainloadscene', 'pano13')"
+								titleID="pano13_title"
+								thumbnail="Indexdata/chambers_lobby_13/thumbnail.jpg"
+							cssClass="pano13">
+						
+						
+						</item>
+						<item name="group_1_item_3"
+							action="invokeKrFunction('mainloadscene', 'pano15')"
+								titleID="pano15_title"
+								thumbnail="Indexdata/classroom_15/thumbnail.jpg"
+							cssClass="pano15">
+						
+						
+						</item>
+						<item name="group_1_item_4"
+							action="invokeKrFunction('mainloadscene', 'pano20')"
+								titleID="pano20_title"
+								thumbnail="Indexdata/hance_auditorium_20/thumbnail.jpg"
+							cssClass="pano20">
+						
+						
+						</item>
+						<item name="group_1_item_5"
+							action="invokeKrFunction('mainloadscene', 'pano31')"
+								titleID="pano31_title"
+								thumbnail="Indexdata/sculpture_garden_2_31/thumbnail.jpg"
+							cssClass="pano31">
+						
+						
+						</item>
+						<item name="group_1_item_6"
+							action="invokeKrFunction('mainloadscene', 'pano23')"
+								titleID="pano23_title"
+								thumbnail="Indexdata/library_entrance_23/thumbnail.jpg"
+							cssClass="pano23">
+						
+						
+						</item>
+						<item name="group_1_item_7"
+							action="invokeKrFunction('mainloadscene', 'pano24')"
+								titleID="pano24_title"
+								thumbnail="Indexdata/library_second_floor_24/thumbnail.jpg"
+							cssClass="pano24">
+						
+						
+						</item>
+						<item name="group_1_item_8"
+							action="invokeKrFunction('mainloadscene', 'pano41')"
+								titleID="pano41_title"
+								thumbnail="Indexdata/wall_center_atrium_2_41/thumbnail.jpg"
+							cssClass="pano41">
+						
+						
+						</item>
+						<item name="group_1_item_9"
+							action="invokeKrFunction('mainloadscene', 'pano21')"
+								titleID="pano21_title"
+								thumbnail="Indexdata/lab_2_21/thumbnail.jpg"
+							cssClass="pano21">
+						
+						
+						</item>
+						<item name="group_1_item_10"
+							action="invokeKrFunction('mainloadscene', 'pano42')"
+								titleID="pano42_title"
+								thumbnail="Indexdata/wall_center_martin_s_42/thumbnail.jpg"
+							cssClass="pano42">
+						
+						
+						</item>
+					
+					
+					
+				</group>
+				<group name="group_2"
+						titleID="panogroup7417_title"
+						thumbnail=""
+						subMenu="true"
+						cssClass="panogroup7417"> 
+
+				
+				
+						<item name="group_2_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano40')"
+								titleID="pano40_title"
+								thumbnail="Indexdata/vac_lobby_2_40/thumbnail.jpg"
+							cssClass="pano40">
+						
+						
+						</item>
+						<item name="group_2_item_2"
+							action="invokeKrFunction('mainloadscene', 'pano27')"
+								titleID="pano27_title"
+								thumbnail="Indexdata/painting_studio_27/thumbnail.jpg"
+							cssClass="pano27">
+						
+						
+						</item>
+						<item name="group_2_item_3"
+							action="invokeKrFunction('mainloadscene', 'pano32')"
+								titleID="pano32_title"
+								thumbnail="Indexdata/sloan_music_library_32/thumbnail.jpg"
+							cssClass="pano32">
+						
+						
+						</item>
+						<item name="group_2_item_4"
+							action="invokeKrFunction('mainloadscene', 'pano34')"
+								titleID="pano34_title"
+								thumbnail="Indexdata/tyler_tallman_hall_34/thumbnail.jpg"
+							cssClass="pano34">
+						
+						
+						</item>
+						<item name="group_2_item_5"
+							action="invokeKrFunction('mainloadscene', 'pano17')"
+								titleID="pano17_title"
+								thumbnail="Indexdata/cunningham_17/thumbnail.jpg"
+							cssClass="pano17">
+						
+						
+						</item>
+					
+					
+					
+				</group>
+				<group name="group_3"
+						titleID="panogroup43_title"
+						thumbnail=""
+						subMenu="true"
+						cssClass="panogroup43"> 
+
+				
+				
+						<item name="group_3_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano10')"
+								titleID="pano10_title"
+								thumbnail="Indexdata/arena_10/thumbnail.jpg"
+							cssClass="pano10">
+						
+						
+						</item>
+						<item name="group_3_item_2"
+							action="invokeKrFunction('mainloadscene', 'pano29')"
+								titleID="pano29_title"
+								thumbnail="Indexdata/richardson_stadium_29/thumbnail.jpg"
+							cssClass="pano29">
+						
+						
+						</item>
+						<item name="group_3_item_3"
+							action="invokeKrFunction('mainloadscene', 'pano11')"
+								titleID="pano11_title"
+								thumbnail="Indexdata/pool_11/thumbnail.jpg"
+							cssClass="pano11">
+						
+						
+						</item>
+						<item name="group_3_item_4"
+							action="invokeKrFunction('mainloadscene', 'pano28')"
+								titleID="pano28_title"
+								thumbnail="Indexdata/pool_28/thumbnail.jpg"
+							cssClass="pano28">
+						
+						
+						</item>
+					
+					
+					
+				</group>
+				<group name="group_4"
+						titleID="panogroup49_title"
+						thumbnail=""
+						subMenu="true"
+						cssClass="panogroup49"> 
+
+				
+				
+						<item name="group_4_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano18')"
+								titleID="pano18_title"
+								thumbnail="Indexdata/dorm_room_18/thumbnail.jpg"
+							cssClass="pano18">
+						
+						
+						</item>
+						<item name="group_4_item_2"
+							action="invokeKrFunction('mainloadscene', 'pano16')"
+								titleID="pano16_title"
+								thumbnail="Indexdata/commons_16/thumbnail.jpg"
+							cssClass="pano16">
+						
+						
+						</item>
+						<item name="group_4_item_3"
+							action="invokeKrFunction('mainloadscene', 'pano5076')"
+								titleID="pano5076_title"
+								thumbnail="Indexdata/patterson_court_lawn_5076/thumbnail.jpg"
+							cssClass="pano5076">
+						
+						
+						</item>
+						<item name="group_4_item_4"
+							action="invokeKrFunction('mainloadscene', 'pano33')"
+								titleID="pano33_title"
+								thumbnail="Indexdata/summit_outpost_33/thumbnail.jpg"
+							cssClass="pano33">
+						
+						
+						</item>
+						<item name="group_4_item_5"
+							action="invokeKrFunction('mainloadscene', 'pano19')"
+								titleID="pano19_title"
+								thumbnail="Indexdata/duke_19/thumbnail.jpg"
+							cssClass="pano19">
+						
+						
+						</item>
+						<item name="group_4_item_6"
+							action="invokeKrFunction('mainloadscene', 'pano30')"
+								titleID="pano30_title"
+								thumbnail="Indexdata/s_w_center_30/thumbnail.jpg"
+							cssClass="pano30">
+						
+						
+						</item>
+						<item name="group_4_item_7"
+							action="invokeKrFunction('mainloadscene', 'pano22')"
+								titleID="pano22_title"
+								thumbnail="Indexdata/lavender_lounge_22/thumbnail.jpg"
+							cssClass="pano22">
+						
+						
+						</item>
+						<item name="group_4_item_8"
+							action="invokeKrFunction('mainloadscene', 'pano35')"
+								titleID="pano35_title"
+								thumbnail="Indexdata/union_porch_35/thumbnail.jpg"
+							cssClass="pano35">
+						
+						
+						</item>
+						<item name="group_4_item_9"
+							action="invokeKrFunction('mainloadscene', 'pano36')"
+								titleID="pano36_title"
+								thumbnail="Indexdata/union_view_1_36/thumbnail.jpg"
+							cssClass="pano36">
+						
+						
+						</item>
+						<item name="group_4_item_10"
+							action="invokeKrFunction('mainloadscene', 'pano37')"
+								titleID="pano37_title"
+								thumbnail="Indexdata/union_view_3_37/thumbnail.jpg"
+							cssClass="pano37">
+						
+						
+						</item>
+						<item name="group_4_item_11"
+							action="invokeKrFunction('mainloadscene', 'pano38')"
+								titleID="pano38_title"
+								thumbnail="Indexdata/union_view_4_38/thumbnail.jpg"
+							cssClass="pano38">
+						
+						
+						</item>
+						<item name="group_4_item_12"
+							action="invokeKrFunction('mainloadscene', 'pano39')"
+								titleID="pano39_title"
+								thumbnail="Indexdata/union_view_5_39/thumbnail.jpg"
+							cssClass="pano39">
+						
+						
+						</item>
+						<item name="group_4_item_13"
+							action="invokeKrFunction('mainloadscene', 'pano26')"
+								titleID="pano26_title"
+								thumbnail="Indexdata/multicultural_office_26/thumbnail.jpg"
+							cssClass="pano26">
+						
+						
+						</item>
+						<item name="group_4_item_14"
+							action="invokeKrFunction('mainloadscene', 'pano12')"
+								titleID="pano12_title"
+								thumbnail="Indexdata/ccd_12/thumbnail.jpg"
+							cssClass="pano12">
+						
+						
+						</item>
+						<item name="group_4_item_15"
+							action="invokeKrFunction('mainloadscene', 'pano4627')"
+								titleID="pano4627_title"
+								thumbnail="Indexdata/xdcpc_2_4627/thumbnail.jpg"
+							cssClass="pano4627">
+						
+						
+						</item>
+						<item name="group_4_item_16"
+							action="invokeKrFunction('mainloadscene', 'pano25')"
+								titleID="pano25_title"
+								thumbnail="Indexdata/lingle_chapel_25/thumbnail.jpg"
+							cssClass="pano25">
+						
+						
+						</item>
+						<item name="group_4_item_17"
+							action="invokeKrFunction('mainloadscene', 'pano7606')"
+								titleID="pano7606_title"
+								thumbnail="Indexdata/lake_campus_7606/thumbnail.jpg"
+							cssClass="pano7606">
+						
+						
+						</item>
+					
+					
+					
+				</group>
+	</internaldata>
+</ptplugin>
+
+<action name="kolorMenuJsReady_panoramaMenu">
+	set(ptplugin[panoramaMenu].jsready, true);
+</action>
+
+<action name="showKolorMenu_panoramaMenu">
+	
+	ifnot(ptplugin[panoramaMenu].isOpen,
+		stopdelayedcall(delay_panoramaMenu);
+		set(ptplugin[panoramaMenu].isOpen, true);
+		set(ptplugin[panoramaMenu].displayed, true);
+		js(openKolorMenu(panoramaMenu));
+	,
+		if(ptplugin[panoramaMenu].jsready,
+			stopdelayedcall(delay_panoramaMenu);
+			set(ptplugin[panoramaMenu].displayed, true);
+			js(invokePluginFunction(panoramaMenu, showKolorMenu));
+		,
+			delayedcall(delay_panoramaMenu, 0.1, showKolorMenu_panoramaMenu(););
+		);
+	);
+</action>
+
+<action name="hideKolorMenu_panoramaMenu">
+	if(ptplugin[panoramaMenu].jsready,
+		stopdelayedcall(delay_panoramaMenu);
+		set(ptplugin[panoramaMenu].displayed, false);
+		js(invokePluginFunction(panoramaMenu, hideKolorMenu));
+	,
+		delayedcall(delay_panoramaMenu, 0.1, hideKolorMenu_panoramaMenu(););
+	);
+</action>
+
+
+<action name="changeLanguage_panoramaMenu">
+	if(ptplugin[panoramaMenu].jsready,
+		stopdelayedcall(delay_panoramaMenu);
+		js(invokePluginFunction(panoramaMenu, changeLanguage));
+	,
+		delayedcall(delay_panoramaMenu, 0.1, changeLanguage_panoramaMenu(););
+	);
+</action>
+
+
+<events name="kolorMenuEvents_panoramaMenu" 
+	keep="true"
+	
+	
+	onTourStart="showKolorMenu_panoramaMenu();"
+	changetourlanguage="changeLanguage_panoramaMenu"
+/>
+
+<!-- ********** -->
+<!-- Virtual Tour Instructions -->
+<!-- id : description2 -->
+<!-- ********** -->
+
+<ptplugin name="description2" canStart="false" newPano="false" openatstart="true" mode="spot" startMethod="" engine="kolorArea">
+	<settings>
+		<option name="position" value="center" type="string" />
+		<option name="start_position" value="left" type="string" />
+		<option name="margin_x" value="0" type="int" />
+		<option name="margin_y" value="0" type="int" />
+		<option name="background_color" value="f2f2f2" type="string" />
+		<option name="background_alpha" value="1" type="float" />
+		<option name="topleft_radius" value="0" type="int" />
+		<option name="topright_radius" value="0" type="int" />
+		<option name="bottomleft_radius" value="0" type="int" />
+		<option name="bottomright_radius" value="0" type="int" />
+		<option name="area_border_width" value="0" type="int" />
+		<option name="area_border_color" value="f2f2f2" type="string" />
+		<option name="area_border_alpha" value="1" type="float" />
+		<option name="padding" value="15" type="int" />
+		<option name="display_title" value="true" type="bool" />
+		<option name="title" value="description2description_title" type="string" />
+		<option name="title_font" value="Palatino" type="string" />
+		<option name="title_size" value="18" type="int" />
+		<option name="title_weight" value="bold" type="string" />
+		<option name="title_decoration" value="underline" type="string" />
+		<option name="title_color" value="000000" type="string" />
+		<option name="close_displayed" value="true" type="bool" />
+		<option name="close_text" value="description2display_close_text" type="string" />
+
+		<option name="overlay_displayed" value="false" type="bool" />
+		<option name="overlay_color" value="000000" type="string" />
+		<option name="overlay_alpha" value="0.50000762951094835" type="float" />
+
+		<option name="area_width" value="25" type="int" />
+		<option name="area_height" value="75" type="int" />
+		<option name="area_width_unit" value="percent" type="string" />
+		<option name="area_height_unit" value="percent" type="string" />
+		<option name="animation" value="false" type="bool" />
+		<option name="animation_duration" value="500" type="int" />
+		<option name="refresh_content" value="true" type="bool" />
+		<option name="close_callback" value="invokeKrFunction('closeKolorAreaCallback_description2')" type="string" />
+		<option name="close_on_click" value="false" type="bool" />
+		<option name="open_callback" value="invokeKrFunction('openKolorAreaCallback_description2')" type="string" />
+		<option name="zorder" value="4" type="int" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+</ptplugin>
+
+<action name="kolorAreaJsReady_description2">
+	set(ptplugin[description2].jsready, true);
+
+</action>
+
+<action name="updateTitle_description2">
+	js(invokePluginFunction(description2, changeTitle, description2description_title));
+</action>
+
+<action name="openKolorArea_description2">
+	ifnot(ptplugin[description2].isOpen,
+		set(ptplugin[description2].isOpen, true);
+		
+		js(showKolorArea(description2, get(ptplugin[description2].descID)));
+		events.dispatch(onremovedisplayedobject);
+	);
+</action>
+
+<action name="closeKolorArea_description2">
+	if(ptplugin[description2].isOpen,
+		js(invokePluginFunction(description2, closeKolorArea));
+	);
+</action>
+
+<action name="toggleKolorArea_description2">
+	if(ptplugin[description2].isOpen,
+		closeKolorArea_description2();
+	,
+		openKolorArea_description2();
+	);
+</action>
+
+<action name="closeKolorAreaCallback_description2">
+	set(ptplugin[description2].isOpen, false);
+</action>
+
+
+<action name="openKolorAreaCallback_description2">
+	updateTitle_description2();
+</action>
+
+<action name="showKolorArea_description2">
+	ifnot(ptplugin[description2].startMethod == "",
+		delayedcall(0,get(ptplugin[description2].startMethod));
+	,
+		set(ptplugin[description2].isOpen, true);
+		
+		js(invokePluginFunction(description2, showKolorArea, %1));
+		events.dispatch(onremovedisplayedobject);
+	);
+</action>
+	
+<action name="hideKolorArea_description2">
+	
+	set(ptplugin[description2].isOpen, false);
+	js(invokePluginFunction(description2, hideKolorArea, %1));
+</action>
+
+<action name="openDescription_description2">
+	openKolorArea_description2();
+</action>
+
+<action name="openSpotDescription_description2">
+	set(ptplugin[description2].descID, %1);
+	openKolorArea_description2();
+</action>
+
+<action name="closeDescription_description2">
+	set(ptplugin[description2].currentGroup, false);
+	if(%1,
+		set(restore_description2, true);
+	,
+		set(restore_description2, false);
+	);
+	closeKolorArea_description2();
+</action> 
+
+<action name="showDescription_description2">
+	if(ptplugin[description2].canStart,
+		if(ptplugin[description2].descID != "",
+			openDescription_description2();
+		,
+			hideKolorArea_description2(false);
+		);
+		set(ptplugin[description2].startMethod, "");
+	);
+</action>
+
+
+
+<action name="changeLanguage_description2">
+	if(ptplugin[description2].jsready,
+		stopdelayedcall(delay_description2);
+		js(invokePluginFunction(description2, changeLanguage, true));
+	,
+		delayedcall(delay_description2, 0.1, changeLanguage_description2(););
+	);
+</action>
+
+<events name="kolorAreaEvents_description2" 
+	keep="true"
+	onTourStart="set(ptplugin[description2].canStart, true);if(ptplugin[description2].openatstart,ifnot(ptplugin[description2].startMethod == '',delayedcall(0,get(ptplugin[description2].startMethod));););"
+	onremovepano="if(ptplugin[description2].isOpen,closeKolorArea_description2(););"
+	changetourlanguage="changeLanguage_description2();"
+/>
+
+<!-- ********** -->
+<!-- Floor plan -->
+<!-- id : floorPlan -->
+<!-- ********** -->
+
+	<ptplugin name="floorPlan" engine="KolorFloorPlan">
+		<settings>
+			<option name="background_color" value="f2f2f2" type="string" />
+			<option name="background_lighter_color" value="ffffff" type="string" />
+			<option name="background_darker_color" value="cacaca" type="string" />
+			<option name="background_alpha" value="1" type="float" />
+			<option name="text_color" value="ffffff" type="string" />
+
+			<option name="resize" value="false" type="bool" />
+			<option name="fp_selector" value="one" type="string" />
+			<option name="fp_selector_label" value="floorPlanmenu_label" type="string" />
+			<option name="display_title" value="false" type="bool" />
+			<option name="title_font" value="Copperplate" type="string" />
+			<option name="title_size" value="13" type="int" />
+			<option name="title_weight" value="bold" type="string" />
+			<option name="title_decoration" value="normal" type="string" />
+			<option name="title_color" value="ffffff" type="string" />
+			<option name="display_orientation" value="false" type="bool" />
+			<option name="display_radar" value="false" type="bool" />
+			<option name="close_on_click" value="false" type="bool" />
+			<option name="position" value="bottomright" type="string" />
+			<option name="zorder" value="5" type="int" />
+			<option name="use_i18n" value="true" type="bool" />
+		</settings>
+		
+		<floorplanItems selectedItem="fpitemmain" selectedSpot="" selectedSpotScene="" selectedSpotHeading="" selectedSpotFov="">
+				
+				<floorplanItem 
+					name="fpitemmain" 
+					width="2200" 
+					height="1700" 
+					groupName="" 
+					url="floorplan/campus_map_final_build.jpg" 
+					title="project_floor_title"
+					heading="0">
+							<spot name="spotmap5959" posX="0.498649001" posY="0.723104" heading="0" desc="spotmap5959_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano29" jsClick="spotmap5959ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap5960" posX="0.51710999" posY="0.615764022" heading="0" desc="spotmap5960_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano36" jsClick="spotmap5960ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap5961" posX="0.350939989" posY="0.674064994" heading="0" desc="spotmap5961_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano14" jsClick="spotmap5961ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap5962" posX="0.183783993" posY="0.516754985" heading="0" desc="spotmap5962_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano40" jsClick="spotmap5962ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap5963" posX="0.444736987" posY="0.448119015" heading="0" desc="spotmap5963_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano16" jsClick="spotmap5963ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap5965" posX="0.224066004" posY="0.660403013" heading="0" desc="spotmap5965_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano4627" jsClick="spotmap5965ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap5966" posX="0.302702993" posY="0.742504001" heading="0" desc="spotmap5966_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano32" jsClick="spotmap5966ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap5968" posX="0.427026987" posY="0.70194" heading="0" desc="spotmap5968_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano23" jsClick="spotmap5968ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap5969" posX="0.390331" posY="0.508177996" heading="0" desc="spotmap5969_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano22" jsClick="spotmap5969ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap6550" posX="0.460581005" posY="0.614764988" heading="0" desc="spotmap6550_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano19" jsClick="spotmap6550ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap6551" posX="0.620270014" posY="0.742504001" heading="0" desc="spotmap6551_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano10" jsClick="spotmap6551ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap6553" posX="0.386487007" posY="0.751322985" heading="0" desc="spotmap6553_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano41" jsClick="spotmap6553ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+							<spot name="spotmap6644" posX="0.25" posY="0.554361999" heading="0" desc="spotmap6644_tooltip" descType="label" groupName="" isScene="true" planar="false" scene="pano17" jsClick="spotmap6644ActionSpotFloorPlan">
+								<icon url="spots/davidson tooltip final build_user_defaultmap0.png" iconWidth="35" iconHeight="35" iconAnchor="center" />
+							</spot>
+				</floorplanItem>
+			
+			
+		</floorplanItems>
+	</ptplugin>
+	
+	<action name="kolorFloorplanJsReady_floorPlan">
+		set(ptplugin[floorPlan].jsready, true);
+		
+		ifnot(ptplugin[floorPlan].floorplanItems.selectedSpot == "",
+			set(ptplugin[floorPlan].floorplanItems.selectedSpotFov, get(view.hfov));
+			js(invokePluginFunction(floorPlan, setKolorFloorPlanSelectedSpotOptions, get(xml.scene), get(view.hlookat), get(view.hfov)));
+		);
+	</action>
+	
+	
+		<!-- floorplan main spots counter : 13 -->
+			<action name="spotmap5959ActionSpotFloorPlan">if(xml.scene == pano29,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano29);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+			<action name="spotmap5960ActionSpotFloorPlan">if(xml.scene == pano36,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano36);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+			<action name="spotmap5961ActionSpotFloorPlan">if(xml.scene == pano14,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano14);lookat(0.000000, 0.000000, 90.000000);
+
+</action>
+			<action name="spotmap5962ActionSpotFloorPlan">if(xml.scene == pano40,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano40);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+			<action name="spotmap5963ActionSpotFloorPlan">if(xml.scene == pano16,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano16);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+			<action name="spotmap5965ActionSpotFloorPlan">if(xml.scene == pano4627,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano4627);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+			<action name="spotmap5966ActionSpotFloorPlan">if(xml.scene == pano32,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano32);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+			<action name="spotmap5968ActionSpotFloorPlan">if(xml.scene == pano23,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano23);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+			<action name="spotmap5969ActionSpotFloorPlan">if(xml.scene == pano22,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano22);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+			<action name="spotmap6550ActionSpotFloorPlan">if(xml.scene == pano19,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano19);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+			<action name="spotmap6551ActionSpotFloorPlan">if(xml.scene == pano10,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano10);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+			<action name="spotmap6553ActionSpotFloorPlan">if(xml.scene == pano41,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano41);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+			<action name="spotmap6644ActionSpotFloorPlan">if(xml.scene == pano17,if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+floorPlanActivateDefaultSpot();););
+          mainloadscene(pano17);lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+
+</action>
+	
+	
+	
+	<events name="floorPlanEvents" 
+	onxmlcomplete="ifnot(floorPlanFloorPlanLoaded,set(tour_displayfloorplan,false););floorPlanActivateDefaultSpot();" 
+	onhidetourfloorplan="floorPlanCloseTourFloorPlan();" 
+	onshowtourfloorplan="if(tour_displayfloorplan,floorPlanOpenTourFloorPlan(););" 
+	onTourStart=""
+	changetourlanguage="floorPlanChangeLanguage();"
+	keep="true" />
+	
+	<action name="floorPlanChangeLanguage">
+		if(ptplugin[floorPlan].jsready,
+			stopdelayedcall(delay_floorPlan);
+			js(invokePluginFunction(floorPlanArea, changeLanguage, false));
+			js(invokePluginFunction(floorPlan, changeLanguage));
+		,
+			delayedcall(delay_floorPlan, 0.1, floorPlanChangeLanguage(););
+		);
+	</action>
+	
+	
+	<krpano floorPlanFloorPlanLoaded="false" />
+	
+	<action name="floorPlanHideTourFloorPlan">
+		hideKolorArea_floorPlanArea(false);
+	</action>
+	
+	<action name="floorPlanCloseTourFloorPlan">
+		closeKolorArea_floorPlanArea();
+	</action>
+	
+	<action name="floorPlanShowTourFloorPlan">
+		if(ptplugin[floorPlanArea].isOpen === null,
+			openKolorArea_floorPlanArea();
+		,
+			showKolorArea_floorPlanArea(false);
+		);
+	</action>
+	
+	<action name="floorPlanOpenTourFloorPlan">
+		openKolorArea_floorPlanArea();
+	</action>
+	
+	
+	<action name="floorPlanActivateSpot">
+		
+		set(ptplugin[floorPlan].floorplanItems.selectedSpot, %1);
+		set(ptplugin[floorPlan].floorplanItems.selectedItem, %2);
+		
+		if(%1 !== "",
+			set(ptplugin[floorPlan].floorplanItems.selectedSpotScene, get(xml.scene));
+			set(ptplugin[floorPlan].floorplanItems.selectedSpotHeading, get(view.hlookat));
+			set(ptplugin[floorPlan].floorplanItems.selectedSpotFov, get(view.hfov));
+		);
+		
+		
+		if(ptplugin[floorPlanArea].isOpen,
+			floorPlanSelectActivatedSpot(%1, %2, %3);
+		);
+	</action>
+	
+	<action name="floorPlanSelectActivatedSpot">
+		js(invokePluginFunction(floorPlan, selectSpot, %1, %2, %3));
+
+	</action>
+	
+	<action name="floorPlanDeactivateSpot">
+		set(ptplugin[floorPlan].floorplanItems.selectedSpot, "");
+		
+		js(invokePluginFunction(floorPlan, unselectSpot));
+	</action>
+	
+	<action name="floorPlanActivateDefaultSpot">
+		set(floorPlanFloorPlanLoaded, true);
+		
+		set(floorPlanSpotFound, "");
+		set(floorPlanSpotScene, "");
+		set(floorPlanItemFound, "");
+		set(floorPlanItemSearch, true);
+		set(floorPlanSpotSearchActivated, true);
+		set(floorPlanSpotSearchContinue, true);
+		
+		
+		for(set(defaultfloorplaniteminc,0), defaultfloorplaniteminc LT ptplugin[floorPlan].floorplanItems.floorplanItem.count , inc(defaultfloorplaniteminc),
+                        if(floorPlanSpotSearchActivated == true,
+				
+				if(ptplugin[floorPlan].floorplanItems.floorplanItem[get(defaultfloorplaniteminc)].groupName == scene[get(xml.scene)].group,
+					set(floorPlanItemFound, get(ptplugin[floorPlan].floorplanItems.floorplanItem[get(defaultfloorplaniteminc)].name));
+					set(ptplugin[floorPlan].floorplanItems.selectedItem, get(ptplugin[floorPlan].floorplanItems.floorplanItem[get(defaultfloorplaniteminc)].name));
+					set(floorPlanItemSearch, false);
+				,
+					
+					if(floorPlanItemFound == "",
+						set(floorPlanItemFound, get(ptplugin[floorPlan].floorplanItems.floorplanItem[fpitemmain].name));
+						set(ptplugin[floorPlan].floorplanItems.selectedItem, get(ptplugin[floorPlan].floorplanItems.floorplanItem[fpitemmain].name));
+					);
+				);
+			);
+			if(floorPlanSpotSearchActivated == true,
+                                for(set(defaultspotinc,0), defaultspotinc LT ptplugin[floorPlan].floorplanItems.floorplanItem[get(defaultfloorplaniteminc)].spot.count , inc(defaultspotinc),
+                                        if(ptplugin[floorPlan].floorplanItems.floorplanItem[get(defaultfloorplaniteminc)].spot[get(defaultspotinc)].isScene == true,
+					
+						if(floorPlanSpotSearchContinue == true,
+							if(ptplugin[floorPlan].floorplanItems.floorplanItem[get(defaultfloorplaniteminc)].spot[get(defaultspotinc)].scene == xml.scene,
+								set(floorPlanSpotFound, get(ptplugin[floorPlan].floorplanItems.floorplanItem[get(defaultfloorplaniteminc)].spot[get(defaultspotinc)].name));
+								set(floorPlanSpotScene, get(ptplugin[floorPlan].floorplanItems.floorplanItem[get(defaultfloorplaniteminc)].spot[get(defaultspotinc)].scene));
+								set(ptplugin[floorPlan].floorplanItems.selectedItem, get(ptplugin[floorPlan].floorplanItems.floorplanItem[get(defaultfloorplaniteminc)].name));
+								if(floorPlanItemSearch == false,
+									set(floorPlanSpotSearchContinue, false);
+									set(floorPlanSpotSearchActivated, false);
+								);
+							);
+						);
+					);
+					
+				);
+			);
+		);
+		
+		if(floorPlanSpotFound == "",
+			
+			
+			floorPlanDeactivateSpot();
+			
+			
+			set(ptplugin[floorPlan].floorplanItems.selectedItem, get(floorPlanItemFound));
+			
+			
+			ifnot(ptplugin[floorPlan].floorplanItems.selectedItem == "",
+				floorPlanActivateSpot("", get(ptplugin[floorPlan].floorplanItems.selectedItem), "");
+			);
+		,
+			
+			floorPlanActivateSpot(get(floorPlanSpotFound), get(ptplugin[floorPlan].floorplanItems.selectedItem), get(floorPlanSpotScene));
+		);
+	</action>
+	
+	<action name="floorPlanChangeTitle">
+		js(invokePluginFunction(floorPlan, changeTitle, %1));
+	</action>
+	
+	<ptplugin name="floorPlanArea" engine="kolorArea">
+	<settings>
+		<option name="position" value="bottomright" type="string" />
+		<option name="start_position" value="left" type="string" />
+		<option name="margin_x" value="0" type="int" />
+		<option name="margin_y" value="0" type="int" />
+		<option name="display_title" value="false" type="bool" />
+		<option name="title_font" value="Copperplate" type="string" />
+		<option name="title_size" value="13" type="int" />
+		<option name="title_weight" value="bold" type="string" />
+		<option name="title_decoration" value="normal" type="string" />
+		<option name="title_color" value="ffffff" type="string" />
+		<option name="close_displayed" value="true" type="bool" />
+		<option name="close_text" value="floorPlandisplay_close_text" type="string" />
+
+		<option name="background_color" value="f2f2f2" type="string" />
+		<option name="background_alpha" value="1" type="float" />
+		<option name="overlay_displayed" value="false" type="bool" />
+		<option name="overlay_color" value="000000" type="string" />
+		<option name="overlay_alpha" value="0.50000762951094835" type="float" />
+
+		<option name="padding" value="8" type="int" />
+		<option name="topleft_radius" value="0" type="int" />
+		<option name="topright_radius" value="0" type="int" />
+		<option name="bottomleft_radius" value="0" type="int" />
+		<option name="bottomright_radius" value="0" type="int" />
+		<option name="area_border_width" value="0" type="int" />
+		<option name="area_border_color" value="f2f2f2" type="string" />
+		<option name="area_border_alpha" value="1" type="float" />
+		<option name="area_width" value="2000" type="int" />
+		<option name="area_height" value="1000" type="int" />
+		<option name="area_width_unit" value="pixel" type="string" />
+		<option name="area_height_unit" value="pixel" type="string" />
+		<option name="animation" value="false" type="bool" />
+		<option name="animation_duration" value="500" type="int" />
+		<option name="close_on_click" value="false" type="bool" />
+		<option name="refresh_content" value="false" type="bool" />
+		<option name="open_callback" value="addKolorFloorPlan('floorPlan', 'floorPlanArea_floorplanDIV');" type="string" />
+		<option name="close_callback" value="invokeKrFunction('closeKolorAreaCallback_floorPlanArea')" type="string" />
+		<option name="zorder" value="5" type="int" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+	</ptplugin>
+	
+	<action name="kolorAreaJsReady_floorPlanArea">
+		set(ptplugin[floorPlanArea].jsready, true);
+
+	</action>
+	
+	<action name="openKolorArea_floorPlanArea">
+		ifnot(ptplugin[floorPlanArea].isOpen,
+			set(ptplugin[floorPlanArea].isOpen, true);
+			pauseautorotation(forceplugin);
+
+			js(showKolorArea(floorPlanArea, &lt;div id="floorPlanArea_floorplanDIV"&gt;&lt;/div&gt;));
+			
+			if(ptplugin[floorPlan].floorplanItems.selectedSpot != "",
+				floorPlanSelectActivatedSpot(get(ptplugin[floorPlan].floorplanItems.selectedSpot), get(ptplugin[floorPlan].floorplanItems.selectedItem), get(ptplugin[floorPlan].floorplanItems.selectedSpotScene));
+			);
+			events.dispatch(onremovedisplayedobject);
+		);
+	</action>
+	
+	<action name="closeKolorArea_floorPlanArea">
+		if(ptplugin[floorPlanArea].isOpen,
+			js(invokePluginFunction(floorPlanArea, closeKolorArea));
+		);
+	</action>
+	
+	<action name="toggleKolorArea_floorPlanArea">
+		if(ptplugin[floorPlanArea].isOpen,
+			closeKolorArea_floorPlanArea();
+		,
+			openKolorArea_floorPlanArea();
+		);
+	</action>
+	
+	<action name="closeKolorAreaCallback_floorPlanArea">
+		if(ptplugin[floorPlanArea].isOpen,resumeautorotation(forceplugin);
+
+			
+		);
+		set(ptplugin[floorPlanArea].isOpen, false);hideFloorplan();
+
+	</action>
+	
+	<action name="changeTitleKolorArea_floorPlanArea">
+		js(invokePluginFunction(floorPlanArea, changeTitle, %1));
+	</action>
+	
+	<action name="showKolorArea_floorPlanArea">
+		set(ptplugin[floorPlanArea].isOpen, true);
+		pauseautorotation(forceplugin);
+
+		js(invokePluginFunction(floorPlanArea, showKolorArea, %1));
+		events.dispatch(onremovedisplayedobject);
+	</action>
+		
+	<action name="hideKolorArea_floorPlanArea">
+		resumeautorotation(forceplugin);
+
+		
+		set(ptplugin[floorPlanArea].isOpen, false);
+		js(invokePluginFunction(floorPlanArea, hideKolorArea, %1));
+	</action>
+	
+	<events name="kolorAreaEvents_floorPlanArea" 
+		keep="true"
+		onremovepano="if(ptplugin[floorPlanArea].isOpen,hideFloorplan();
+);"
+	/>
+	
+
+<!-- ********** -->
+<!-- Floor Plan Button -->
+<!-- id : button4 -->
+<!-- ********** -->
+
+  <layer name="button4"
+         keep="true"
+         url="%FIRSTXML%/graphics/button4/campus_map_final_build.jpg"
+         align="bottomright"
+         x="10"
+         y="10"
+         zorder="6"
+         visible="false"
+         onclick="button4OnClick"
+         tooltip="button4tooltip"
+         onhover="showTooltip('plugin');"
+         onout="hideTooltip();"
+         height="100"
+         width="100"
+         />
+
+
+
+  <action name="button4OnClick">showFloorplan();
+
+
+
+  </action>
+
+  <events name="button4events"
+    onTourStart="showbutton4();"
+    hidetourcontrols="hidebutton4();"
+    showtourcontrols="showbutton4();"
+    keep="true" />
+  <action name="hidebutton4">set(layer[button4].visible, false);</action>
+  <action name="showbutton4">if(tour_displaycontrols,set(layer[button4].visible, true);,hidebutton4(););</action>
+
+
+<!-- ********** -->
+<!-- Pano Description -->
+<!-- id : description3 -->
+<!-- ********** -->
+
+<ptplugin name="description3" canStart="false" newPano="false" openatstart="false" mode="panorama" startMethod="showDescription_description3" engine="kolorArea">
+	<settings>
+		<option name="position" value="left" type="string" />
+		<option name="start_position" value="left" type="string" />
+		<option name="margin_x" value="0" type="int" />
+		<option name="margin_y" value="0" type="int" />
+		<option name="background_color" value="f2f2f2" type="string" />
+		<option name="background_alpha" value="1" type="float" />
+		<option name="topleft_radius" value="0" type="int" />
+		<option name="topright_radius" value="0" type="int" />
+		<option name="bottomleft_radius" value="0" type="int" />
+		<option name="bottomright_radius" value="0" type="int" />
+		<option name="area_border_width" value="0" type="int" />
+		<option name="area_border_color" value="f2f2f2" type="string" />
+		<option name="area_border_alpha" value="1" type="float" />
+		<option name="padding" value="15" type="int" />
+		<option name="display_title" value="true" type="bool" />
+		<option name="title" value="" type="string" />
+		<option name="title_font" value="Palatino" type="string" />
+		<option name="title_size" value="13" type="int" />
+		<option name="title_weight" value="bold" type="string" />
+		<option name="title_decoration" value="underline" type="string" />
+		<option name="title_color" value="000000" type="string" />
+		<option name="close_displayed" value="true" type="bool" />
+		<option name="close_text" value="description3display_close_text" type="string" />
+
+		<option name="overlay_displayed" value="false" type="bool" />
+		<option name="overlay_color" value="000000" type="string" />
+		<option name="overlay_alpha" value="0.50000762951094835" type="float" />
+
+		<option name="area_width" value="20" type="int" />
+		<option name="area_height" value="51" type="int" />
+		<option name="area_width_unit" value="percent" type="string" />
+		<option name="area_height_unit" value="percent" type="string" />
+		<option name="animation" value="false" type="bool" />
+		<option name="animation_duration" value="500" type="int" />
+		<option name="refresh_content" value="true" type="bool" />
+		<option name="close_callback" value="invokeKrFunction('closeKolorAreaCallback_description3')" type="string" />
+		<option name="close_on_click" value="false" type="bool" />
+		<option name="open_callback" value="invokeKrFunction('openKolorAreaCallback_description3')" type="string" />
+		<option name="zorder" value="7" type="int" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+</ptplugin>
+
+<action name="kolorAreaJsReady_description3">
+	set(ptplugin[description3].jsready, true);
+
+</action>
+
+<action name="updateTitle_description3">
+	js(invokePluginFunction(description3, changeTitle, get(scene[get(xml.scene)].titleid)));
+</action>
+
+<action name="openKolorArea_description3">
+	ifnot(ptplugin[description3].isOpen,
+		set(ptplugin[description3].isOpen, true);
+		
+		js(showKolorArea(description3, get(ptplugin[description3].descID)));
+		events.dispatch(onremovedisplayedobject);
+	);
+</action>
+
+<action name="closeKolorArea_description3">
+	if(ptplugin[description3].isOpen,
+		js(invokePluginFunction(description3, closeKolorArea));
+	);
+</action>
+
+<action name="toggleKolorArea_description3">
+	if(ptplugin[description3].isOpen,
+		closeKolorArea_description3();
+	,
+		openKolorArea_description3();
+	);
+</action>
+
+<action name="closeKolorAreaCallback_description3">
+	set(ptplugin[description3].isOpen, false);
+</action>
+
+
+<action name="openKolorAreaCallback_description3">
+	updateTitle_description3();
+</action>
+
+<action name="showKolorArea_description3">
+	ifnot(ptplugin[description3].startMethod == "",
+		delayedcall(0,get(ptplugin[description3].startMethod));
+	,
+		set(ptplugin[description3].isOpen, true);
+		
+		js(invokePluginFunction(description3, showKolorArea, %1));
+		events.dispatch(onremovedisplayedobject);
+	);
+</action>
+	
+<action name="hideKolorArea_description3">
+	
+	set(ptplugin[description3].isOpen, false);
+	js(invokePluginFunction(description3, hideKolorArea, %1));
+</action>
+
+<action name="openDescription_description3">
+	openKolorArea_description3();
+</action>
+
+<action name="openSpotDescription_description3">
+	set(ptplugin[description3].descID, %1);
+	openKolorArea_description3();
+</action>
+
+<action name="closeDescription_description3">
+	set(ptplugin[description3].currentGroup, false);
+	if(%1,
+		set(restore_description3, true);
+	,
+		set(restore_description3, false);
+	);
+	closeKolorArea_description3();
+</action> 
+
+<action name="showDescription_description3">
+	if(ptplugin[description3].canStart,
+		set(ptplugin[description3].descID, get(scene[get(xml.scene)].descriptionid));
+		if(ptplugin[description3].descID == null,
+			set(ptplugin[description3].descID, "");
+		);
+		if(ptplugin[description3].descID != "",
+			openDescription_description3();
+		,
+			hideKolorArea_description3(false);
+		);
+		set(ptplugin[description3].startMethod, "");
+	);
+</action>
+
+
+<action name="refreshPanoDescription_description3">
+	set(ptplugin[description3].descID, get(scene[get(xml.scene)].descriptionid));
+	if(ptplugin[description3].descID == null,
+		set(ptplugin[description3].descID, "");
+	);
+	if(ptplugin[description3].descID != "",
+		if(ptplugin[description3].isOpen,
+			js(invokePluginFunction(description3, updateKolorArea, get(ptplugin[description3].descID)));
+			updateTitle_description3();
+		,
+			if(restore_description3,
+				showDescription_description3();
+			);
+		);
+	,
+		closeDescription_description3(get(ptplugin[description3].isOpen));
+	);
+</action>
+
+<action name="onNewPano_description3">
+	if(ptplugin[description3].newPano,
+		if(ptplugin[description3].startMethod == "",
+			if(ptplugin[description3].isOpen,
+				refreshPanoDescription_description3();
+			,
+				refreshPanoDescription_description3();
+			);
+		);
+	);
+	set(ptplugin[description3].newPano, true);
+</action>
+
+<action name="changeLanguage_description3">
+	if(ptplugin[description3].jsready,
+		stopdelayedcall(delay_description3);
+		js(invokePluginFunction(description3, changeLanguage, true));
+	,
+		delayedcall(delay_description3, 0.1, changeLanguage_description3(););
+	);
+</action>
+
+<events name="kolorAreaEvents_description3" 
+	keep="true"
+	onTourStart="set(ptplugin[description3].canStart, true);if(ptplugin[description3].openatstart,ifnot(ptplugin[description3].startMethod == '',delayedcall(0,get(ptplugin[description3].startMethod));););"
+	onnewpano="onNewPano_description3();"
+	changetourlanguage="changeLanguage_description3();"
+/>
+
+<!-- ********** -->
+<!-- Pano Description Button -->
+<!-- id : button6 -->
+<!-- ********** -->
+
+  <layer name="button6"
+         keep="true"
+         url="%FIRSTXML%/graphics/button6/davidson_logo_final_build.jpg"
+         align="bottomleft"
+         x="10"
+         y="10"
+         zorder="8"
+         visible="false"
+         onclick="button6OnClick"
+         tooltip="button6tooltip"
+         onhover="showTooltip('plugin');"
+         onout="hideTooltip();"
+         height="9%"
+         width="6%"
+         />
+
+
+
+  <action name="button6OnClick">
+showDescription_description3();
+
+
+
+  </action>
+
+  <events name="button6events"
+    onTourStart="showbutton6();"
+    hidetourcontrols="hidebutton6();"
+    showtourcontrols="showbutton6();"
+    keep="true" />
+  <action name="hidebutton6">set(layer[button6].visible, false);</action>
+  <action name="showbutton6">if(tour_displaycontrols,set(layer[button6].visible, true);,hidebutton6(););</action>
+
+
+<!-- ********** -->
+<!-- Request Information Website Box -->
+<!-- id : websiteViewer1 -->
+<!-- ********** -->
+
+<ptplugin name="websiteViewer1" engine="kolorBox">
+	<settings>
+		<option name="position" value="topleft" type="string" />
+		<option name="margin_x" value="20" type="int" />
+		<option name="margin_y" value="0" type="int" />
+		<option name="external_padding" value="15" type="int" />
+		<option name="draggable_box" value="false" type="bool" />
+		<option name="container_auto_size" value="true" type="bool" />
+		<option name="container_width" value="100" type="int" />
+		<option name="container_width_unit" value="percent" type="string" />
+		<option name="container_height" value="100" type="int" />
+		<option name="container_height_unit" value="percent" type="string" />
+		<option name="container_color" value="ffffff" type="string" />
+		<option name="container_alpha" value="0.80000000000000004" type="float" />
+		<option name="container_topleft_border_radius" value="15" type="int" />
+		<option name="container_topright_border_radius" value="15" type="int" />
+		<option name="container_bottomleft_border_radius" value="15" type="int" />
+		<option name="container_bottomright_border_radius" value="15" type="int" />
+		<option name="container_border_width" value="0" type="int" />
+		<option name="container_border_color" value="ffffff" type="string" />
+		<option name="container_border_alpha" value="1" type="float" />
+		<option name="overlay_displayed" value="false" type="bool" />
+		<option name="overlay_color" value="000000" type="string" />
+		<option name="overlay_alpha" value="0.50000762951094835" type="float" />
+
+		<option name="title_displayed" value="false" type="bool" />
+		<option name="title_position" value="top" type="string" />
+		<option name="title_font" value="Verdana" type="string" />
+		<option name="title_size" value="14" type="int" />
+		<option name="title_weight" value="normal" type="string" />
+		<option name="title_style" value="normal" type="string" />
+		<option name="title_decoration" value="none" type="string" />
+		<option name="title_color" value="000000" type="string" />
+		<option name="caption_displayed" value="false" type="bool" />
+		<option name="iframe_scrolling" value="auto" type="string" />
+		<option name="iframe_default_width" value="1100" type="int" />
+		<option name="iframe_default_height" value="800" type="int" />
+		<option name="iframe_devices_width" value="1100" type="int" />
+		<option name="iframe_devices_height" value="800" type="int" />
+		<option name="force_ios_scrolling" value="true" type="bool" />
+		<option name="fullscreen_displayed" value="false" type="bool" />
+		<option name="fullscreen_position" value="topleft" type="string" />
+		<option name="fullscreen_text" value="websiteViewer1fullscreen_text" type="string" />
+
+
+
+
+		<option name="close_displayed" value="false" type="bool" />
+		<option name="close_position" value="topright" type="string" />
+		<option name="close_text" value="websiteViewer1close_text" type="string" />
+
+		<option name="close_callback" value="invokeKrFunction('closeKolorBoxCallback_websiteViewer1')" type="string" />
+		<option name="zorder" value="9" type="int" />
+		<option name="use_i18n" value="true" type="bool" />
+	</settings>
+	<internaldata>
+		
+	</internaldata>
+</ptplugin>
+
+<action name="kolorBoxJsReady_websiteViewer1">
+	set(ptplugin[websiteViewer1].jsready, true);
+</action>
+
+<action name="openWebsite_websiteViewer1">
+	ifnot(ptplugin[websiteViewer1].isOpen,
+		set(ptplugin[websiteViewer1].isOpen, true);
+		set(ptplugin[websiteViewer1].doNotDeleteMe, false);
+		getmessage(websiteViewer1_boxurl, %1);
+		txtadd(websiteViewer1_boxurl, ?iframe=true);
+		pauseautorotation(forceplugin);
+
+		js(invokePluginFunction(websiteViewer1, loadSingleArrayItem, get(websiteViewer1_boxurl), %2));
+		events.dispatch(onremovedisplayedobject);
+	,
+		if('%1' != websiteViewer1_boxurl,
+			closeKolorBox_websiteViewer1();
+			delayedcall(0.3,openWebsite_websiteViewer1(%1,%2););
+		);
+	);
+</action>
+
+<action name="toggleWebsite_websiteViewer1">
+	js(invokePluginFunction(websiteViewer1, toggleKolorBox, %1));
+</action>
+
+
+<action name="closeKolorBox_websiteViewer1">
+	js(invokePluginFunction(websiteViewer1, closeKolorBox));
+</action>
+
+<action name="closeKolorBoxCallback_websiteViewer1">
+	resumeautorotation(forceplugin);
+
+	set(ptplugin[websiteViewer1].isOpen, false);
+</action>
+
+<action name="changeLanguage_websiteViewer1">
+	if(ptplugin[websiteViewer1].jsready,
+		stopdelayedcall(delay_websiteViewer1);
+		js(invokePluginFunction(websiteViewer1, changeLanguage));
+	,
+		delayedcall(delay_websiteViewer1, 0.1, changeLanguage_websiteViewer1(););
+	);
+</action>
+
+<events name="kolorBoxEvents_websiteViewer1" 
+	keep="true"
+	changetourlanguage="changeLanguage_websiteViewer1();"
+	/>
+
+<!-- ********** -->
+<!-- Request Information Button -->
+<!-- id : button7 -->
+<!-- ********** -->
+
+  <layer name="button7"
+         keep="true"
+         url="%FIRSTXML%/graphics/button7/request_info_final_build.png"
+         align="top"
+         x="10"
+         y="10"
+         zorder="10"
+         visible="false"
+         onclick="button7OnClick"
+         height="38"
+         width="106"
+         />
+
+
+
+  <action name="button7OnClick">getmessage(urltoopen,button7onclick10285openurlwebsiteurl);openurl(get(urltoopen),_blank);
+
+
+  </action>
+
+  <events name="button7events"
+    onTourStart="showbutton7();"
+    hidetourcontrols="hidebutton7();"
+    showtourcontrols="showbutton7();"
+    keep="true" />
+  <action name="hidebutton7">set(layer[button7].visible, false);</action>
+  <action name="showbutton7">if(tour_displaycontrols,set(layer[button7].visible, true);,hidebutton7(););</action>
+
+
+<!-- ********** -->
+<!-- Previous/Next Dots -->
+<!-- id : prevnexttheme8 -->
+<!-- ********** -->
+
+  <style name="prevnexttheme8ArrowStyle" keep="true" x="10" alpha="0.5"
+               crop="0| 0|38|38"
+         onovercrop="0|38|38|38"
+         ondowncrop="0|76|38|38"
+         />
+  <layer name="prevnexttheme8prevPanoramaArrow" style="prevnexttheme8ArrowStyle"
+         url="%FIRSTXML%/graphics/prevnextdots/btn_scroll_left.png" align="left" 
+         tooltip="prevnexttheme8prevSceneTip"
+         onhover="set(alpha, 1);showTooltip('plugin',prevnexttheme8TooltipStyle,left);"
+         onout="set(alpha, 0.5);hideTooltip();"
+         onclick="loadPreviousScene();
+"
+         visible="false"
+         zorder="11" />
+
+  <layer name="prevnexttheme8nextPanoramaArrow" style="prevnexttheme8ArrowStyle"
+         url="%FIRSTXML%/graphics/prevnextdots/btn_scroll_right.png" align="right"
+         tooltip="prevnexttheme8nextSceneTip"
+         onhover="set(alpha, 1);showTooltip('plugin',prevnexttheme8TooltipStyle,right);"
+         onout="set(alpha, 0.5);hideTooltip();"
+         onclick="loadNextScene();
+"
+         visible="false"
+         zorder="11" />
+
+  <events name="prevnexttheme8hideshowcontrolsevent" 
+    onTourStart="prevnexttheme8showPrevNextControls();"
+    keep="true"/>
+  <action name="prevnexttheme8hidePrevNextControls">
+    set(layer[prevnexttheme8prevPanoramaArrow].visible, false);
+    set(layer[prevnexttheme8nextPanoramaArrow].visible, false);
+  </action>
+  <action name="prevnexttheme8showPrevNextControls">
+    set(layer[prevnexttheme8prevPanoramaArrow].visible, true);
+    set(layer[prevnexttheme8nextPanoramaArrow].visible, true);
+  </action>
+
+<layer name="prevnexttheme8TooltipStyle"
+	keep="true"
+	enabled="false"
+	capture="false"
+	type="text"
+	align="center"
+	bg="false"
+	bgborder="0"
+	css="color:#ffffff;font-family:Palatino;font-weight:bold;font-size:14px;text-align:left;"
+	interactivecontent="false"
+	zorder="0"
+	padding="2"
+	xoffset="0"
+	yoffset="0"
+	visible="false"
+	html=""
+/>
+
+  <!-- FLOORPLAN -->
+  <action name="hideFloorplan">set(tour_displayfloorplan, false);events.dispatch(onhidetourfloorplan);</action>
+  <action name="showFloorplan">set(tour_displayfloorplan, true); events.dispatch(onshowtourfloorplan);</action>
+
+
+</krpano>
