@@ -2,11 +2,11 @@
 title: Home
 layout: default
 ---
-<div class="container">
+<div class="container" role="main">
     <div class="row">
-        <div class="col">
+        <div class="col-sm-12 col-md-6 col-lg-4 py-5">
             <a href="https://www.davidson.edu">
-                <img src="{{ 'assets/images/davidson_logo.svg' | relative_url }}" alt="Davidson College logo with bar and diamond">
+                <img class="img-fluid" src="{{ 'assets/images/davidson_logo.svg' | relative_url }}" alt="Davidson College logo with bar and diamond">
             </a>
         </div>
     </div>
@@ -18,15 +18,17 @@ layout: default
                 Accessible formats. Please choose the format that best suits your
                 needs below:
             </p>
-            <div>
-                <a href="{{ 'standard' | relative_url }}" aria-label="Standard Tour (not web accessible)">
-                    <img class="img-fluid" src="{{ 'assets/images/chambers_standard.jpg' | relative_url }}" alt="An image of the Chambers building from the front with the word Standard overlayed on top" title="An image of the Chambers building from the front with the word Standard overlayed on top">
-                </a>
-            </div>
-            <div>
-                <a href="{{ 'accessible' | relative_url }}" aria-label="Web Accessible Tour">
-                    <img class="img-fluid" src="{{ 'assets/images/chambers_accessible.jpg' | relative_url }}" alt="An image of the Chambers building from the front with the word Accessible overlayed on top" title="An image of the Chambers building from the front with the word Accessible overlayed on top">
-                </a>
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-10 col-lg-8 p-4">
+                    <a href="{{ 'standard' | relative_url }}" aria-label="Standard Tour (not web accessible)" alt="Standard Tour (not web accessible)">
+                        <img class="img-fluid" src="{{ 'assets/images/chambers_standard.jpg' | relative_url }}" alt="An image of the Chambers building from the front with the word Standard overlayed on top">
+                    </a>
+                </div>
+                <div class="col-sm-12 col-md-10 col-lg-8 p-4">
+                    <a href="{{ 'accessible' | relative_url }}" aria-label="Web Accessible Tour" alt="Web Accessible Tour">
+                        <img class="img-fluid" src="{{ 'assets/images/chambers_accessible.jpg' | relative_url }}" alt="An image of the Chambers building from the front with the word Accessible overlayed on top">
+                    </a>
+                </div>
             </div>
         </div>
     </div>
