@@ -1,14 +1,16 @@
 {% assign slug = include.name | slugify %}
-<div id="{{ slug }}" aria-labelledby="{{ slug }}Title" aria-describedby="{{ slug }}Description">
-    <div style="text-align: center" class="mt-3">
+<div id="{{ slug }}" aria-labelledby="{{ slug }}Title" aria-describedby="{{ slug }}Description" class="row justify-content-center">
+    <div class="mt-3 col-12 col-md-10 col-lg-8 text-center">
         <h3 id="{{ slug }}Title">{{ include.name }}</h3>
         {% assign img_src = 'standard/Indexdata/' | append: include.image | append: '/html5/0.jpg' %}
         <img class="img-fluid" src="{{ img_src | relative_url }}" alt="{{ location.name }}" aria-describedby="{{ slug }}Description">
     </div>
-    <p id="{{ slug }}Description">
-        {{ include.content | markdownify }}
-    </p>
-    <div style="text-align: right" role="navigation">
-        Exit current route and jump back to <a href="#jumpMenu" aria-label="navigation menu" alt="navigation menu">navigation menu</a>.
+    <div class="col-12">
+        <p id="{{ slug }}Description">
+            {{ include.content | markdownify }}
+        </p>
+        <div style="text-align: right" role="navigation">
+            Exit current route and jump back to <a href="#jumpMenu" aria-label="navigation menu" alt="navigation menu">navigation menu</a>.
+        </div>
     </div>
 </div>
