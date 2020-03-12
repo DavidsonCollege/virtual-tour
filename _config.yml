@@ -30,10 +30,7 @@ collections:
 #  - jekyll-feed
 
 sass:
-  load_paths:
-    - _sass
-    - _sass/bootstrap
-
+  sass_dir: assets/css
 
 # Exclude from processing.
 # The following items will not be processed, by default.
